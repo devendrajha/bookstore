@@ -4,8 +4,7 @@ from app.services.routes.book import router as BookStore
 
 app = FastAPI()
 
-app.include_router(BookStore, tags=["BookStore"], prefix="/bookstore")
-
+app.include_router(BookStore, tags=["BookStoreServices"], prefix="/bookstore")
 
 @app.get("/", tags=["Root"])
 async def read_root():

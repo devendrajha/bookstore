@@ -1,7 +1,6 @@
 from datetime import datetime
-from typing import List, Optional
+from typing import Optional
 from pydantic import BaseModel, Field
-
 
 class BookSchema(BaseModel):
     title: str = Field(...)
@@ -10,16 +9,12 @@ class BookSchema(BaseModel):
     cost: float = Field(...)
     create_time: datetime = Field(...)
 
-
-
 class UpdateBookModel(BaseModel):
     title: str = Field(...)
     author: str = Field(...)
     book_description: str = Field(...)
     cost: int = Field(...)
     create_time: datetime = Field(...)
-
-
 
 def ResponseModel(data, message):
     return {

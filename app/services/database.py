@@ -73,9 +73,14 @@ async def delete_book(id: str):
         await book_collection.delete_one({"_id": ObjectId(id)})
         return True
 
+"""
+searching books based on title and author
+create index in mongodb:-   db.book_collection.createIndex( { title: "text", author: "text"} )
+After some search, I found out that MongoDB provided on Azure (DOCUMENTDB...) does not support it.
+https://docs.microsoft.com/en-us/azure/documentdb/documentdb-indexing-policies
+Note Search API works fine with locale mongodb
 
-# Retrieve books based on custom no.
-
+"""
 async def book_searching(search):
     books = []
     async for b in book_collection.find({"$text": {"$search":search}}):

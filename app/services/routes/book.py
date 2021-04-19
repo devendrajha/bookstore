@@ -79,14 +79,14 @@ async def delete_book_data(id: str):
 
 @router.get("/page/{limit}", response_description="Book retrieved")
 async def get_books_with_custom_count(limit):
-    get_resp = await retrieve_books_limit(int(limit))
-    if get_resp:
-        return ResponseModel(get_resp, "Book data retrieved successfully")
-    return ResponseModel(get_resp, "Books data not available ")
+    limit_resp = await retrieve_books_limit(int(limit))
+    if limit_resp:
+        return ResponseModel(limit_resp, "Book data retrieved successfully")
+    return ResponseModel(limit_resp, "Books data not available ")
 
 @router.get("/search/{search}", response_description="Book retrieved")
 async def search_books(search):
-    get_resp = await book_searching(search)
-    if get_resp:
-        return ResponseModel(get_resp, "Book data retrieved successfully")
-    return ResponseModel(get_resp, "Books data not available ")
+    search_resp = await book_searching(search)
+    if search_resp:
+        return ResponseModel(search_resp, "Book data retrieved successfully")
+    return ResponseModel(search_resp, "Books data not available ")
