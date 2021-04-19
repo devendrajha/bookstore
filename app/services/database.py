@@ -2,7 +2,7 @@ import motor.motor_asyncio
 from bson.objectid import ObjectId
 
 AZURE_DATABASE_CONNECTION_STRING = "mongodb://com-devendra:3IjuoWA1r84AIQD1yV7PdWjfU0ms2vlcpnIRTMdZMI17OdU2RPzdhSY5W9YlV3GDuVrLnUsY5Xt6Gyclb4XX0w==@com-devendra.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@com-devendra@"
-AZURE_DATABASE_CONNECTION_STRING='mongodb://localhost:27017'
+#AZURE_DATABASE_CONNECTION_STRING='mongodb://localhost:27017'
 client = motor.motor_asyncio.AsyncIOMotorClient(AZURE_DATABASE_CONNECTION_STRING)
 
 database = client.storedb

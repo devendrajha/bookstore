@@ -1,63 +1,92 @@
 import requests
 import json
+import random
+import string
 
-url = "http://127.0.0.1:8000/bookstore/"
+letters = string.ascii_letters
+#print ( ''.join(random.choice(letters) for i in range(10)) )
 
-payload = json.dumps({
-  "title": "Devendra k Jha",
-  "author": "Alex",
-  "book_description": "Python 3.6x engineering",
-  "cost": 153,
-  "create_time": "2021-04-21T00:33:41+00:00"
-})
-headers = {
-  'Content-Type': 'application/json'
-}
-#for i in range(2):
-#  response = requests.request("POST", url, headers=headers, data=payload)
-#  print(response.text)
+def post():
+    url = "http://127.0.0.1:8000/bookstore/"
+    payload = json.dumps({
+        "title": "Devendra k Jha",
+        "author": "Alex",
+        "book_description": "Python 3.6x engineering",
+        "cost": 153,
+        "create_time": "2021-04-21T00:33:41+00:00"
+    })
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+    return response.text
+
+def getbookdetails(bid):
+    url = "http://127.0.0.1:8000/bookstore/bookdetails/" + bid
+    headers = {}
+    response = requests.request("GET", url, headers=headers)
+    return response.text
+
+
+def getallbooks():
+    url = "http://127.0.0.1:8000/bookstore/"
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    response = requests.request("GET", url, headers=headers)
+    return response.text
+
+
+def get_with_limit(limit):
+    url = "http://127.0.0.1:8000/bookstore/page/" + str(limit)
+    payload = {}
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    response = requests.request("GET", url, headers=headers, data=payload)
+
+    return response.text
+
+
+def delete(bid):
+    url = "http://127.0.0.1:8000/bookstore/" + bid
+    payload = {}
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    response = requests.request("DELETE", url, headers=headers, data=payload)
+
+    return response.text
 
 
 
-import requests
-import json
-import hashlib
-import base64
-import time
-import hmac
+def update(bid):
+    url = "http://127.0.0.1:8000/bookstore/" + bid
+    payload = json.dumps({
+        "title": "Mandel kk",
+        "author": "pearson",
+        "book_description": "Python 3.6x",
+        "cost": 153,
+        "create_time": "2021-04-21T00:33:41+00:00"
+    })
+    headers = {
+        'Content-Type': 'application/json'
+    }
 
-#Account Info
-AccessId ='48v2wRzfK94y53sq5EuF'
-AccessKey ='H_D9i(f5~B^U36^K6i42=^nS~e75gy382Bf6{)P+'
-Company = 'api'
+    response = requests.request("PUT", url, headers=headers, data=payload)
 
-#Request Info
-httpVerb ='GET'
-resourcePath = '/device/devices'
-queryParams =''
-data = ''
+    return response.text
 
-#Construct URL
-url = "http://127.0.0.1:8000/bookstore/"
 
-#Get current time in milliseconds
-epoch =str(int(time.time() * 1000))
+def search(search_string):
+    url = "http://127.0.0.1:8000/bookstore/search/" + search_string
+    headers = {}
+    response = requests.request("GET", url, headers=headers)
 
-#Concatenate Request details
-requestVars = httpVerb + epoch + data + resourcePath
+    return response.text
 
-#Construct signature
-hmac = hmac.new(AccessKey.encode(),msg=requestVars.encode(),digestmod=hashlib.sha256).hexdigest()
-signature = base64.b64encode(hmac.encode())
 
-#Construct headers
-auth = 'LMv1 ' + AccessId + ':' + signature.decode() + ':' + epoch
-headers = {'Content-Type':'application/json'}
-
-#Make request
-response = requests.get(url, data=data, headers=headers)
-
-#Print status and body of response
-print ('Response Status:',response.status_code)
-print ('Response Body:',response.content)
+#print(search('google'))
+print(getbookdetails())
+#post()
 
