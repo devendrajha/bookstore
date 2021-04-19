@@ -10,7 +10,7 @@ from app.services.database import (
     retrieve_books_limit,
     book_searching,
 )
-from app.services.models.books_data_model import (
+from app.services.models.book_data_model import (
     ErrorResponseModel,
     ResponseModel,
     BookSchema,
