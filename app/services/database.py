@@ -76,7 +76,7 @@ async def delete_book(id: str):
 """
 searching books based on title and author
 create index in mongodb:-   db.book_collection.createIndex( { title: "text", author: "text"} )
-After some search, I found out that MongoDB provided on Azure (DOCUMENTDB...) does not support it.
+After some search, I found out that MongoDB provided on Azure (DOCUMENTDB...) does not support text indexing.
 https://docs.microsoft.com/en-us/azure/documentdb/documentdb-indexing-policies
 Note Search API works fine with locale mongodb
 
