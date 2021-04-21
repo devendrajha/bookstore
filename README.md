@@ -1,3 +1,3 @@
 # bookstore
 
-summary i have added in monitoring/Bookstore assignment.docx
+Framwork Summary i have added in doc and location of doc is monitoring/Bookstore assignment.docx
