@@ -30,7 +30,7 @@ async def retrieve_all_books():
     return books
 
 # Retrieve books based on custom no.
-async def retrieve_books_limit(lt =0):
+async def retrieve_books_limit(lt=0):
     books = []
     async for b in book_collection.find({},limit=lt):
         books.append(book_details(b))
